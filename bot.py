@@ -377,6 +377,13 @@ def handle_topic(message):
         bot.edit_message_text(error_msg, user_id, msg.message_id)
         print(f"خطا: {e}")
 
+try:
+    # درخواست برای بستن تمام Webhookها و Stop کردن هر polling قبلی
+    bot.remove_webhook()
+    bot.stop_polling()
+    print("اتصالات قبلی پاک شد.")
+except Exception as e:
+    print(f"خطا در پاک کردن اتصالات قبلی: {e}")
+
 print("✅ ربات در حال اجراست...")
-print("📊 ترتیب نتایج بر اساس بیشترین تعداد کامنت")
 bot.infinity_polling(timeout=15)
